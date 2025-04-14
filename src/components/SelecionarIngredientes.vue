@@ -1,17 +1,19 @@
 <script lang="ts">
 import { obterCategorias } from '@/http';
 import type ICategoria from '@/interfaces/ICategorias';
+import CardCategoria from './CardCategoria.vue';
 
-  export default{
-    data() {
-      return {
+export default {
+  data() {
+    return {
       categorias: [] as ICategoria[]
-      }
-    },
-    async created() {
-      this.categorias = await obterCategorias();
     }
-  }
+  },
+  async created() {
+    this.categorias = await obterCategorias();
+  },
+  components: { CardCategoria }
+}
 </script>
 
 <template>
@@ -24,7 +26,7 @@ import type ICategoria from '@/interfaces/ICategorias';
 
     <ul class="categorias">
       <li v-for="categoria in categorias" :key="categoria.nome">
-        {{ categoria.nome }}
+        <CardCategoria :categoria="categoria" />
       </li>
     </ul>
 
@@ -35,7 +37,7 @@ import type ICategoria from '@/interfaces/ICategorias';
 </template>
 
 <style scoped>
-  .selecionar-ingredientes {
+.selecionar-ingredientes {
   display: flex;
   flex-direction: column;
   align-items: center;
