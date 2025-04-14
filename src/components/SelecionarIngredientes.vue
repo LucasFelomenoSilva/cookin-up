@@ -1,11 +1,15 @@
 <script lang="ts">
 import { obterCategorias } from '@/http';
+import type ICategoria from '@/interfaces/ICategorias';
 
   export default{
     data() {
       return {
-      categorias: obterCategorias()
+      categorias: [] as ICategoria[]
       }
+    },
+    async created() {
+      this.categorias = await obterCategorias();
     }
   }
 </script>
@@ -14,7 +18,7 @@ import { obterCategorias } from '@/http';
   <section class="selecionar-ingredientes">
     <h1 class="cabecalho titulo-ingredientes">Ingredientes</h1>
 
-    <p class="paragrafo-lg intrucoes">
+    <p class="paragrafo-lg instrucoes">
       Selecione abaixo os ingredientes que você quer usar nesta receita:
     </p>
 
