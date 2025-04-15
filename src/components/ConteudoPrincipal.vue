@@ -1,22 +1,34 @@
 <script lang="ts">
-import SelecionarIngredientes from '../components/SelecionarIngredientes.vue';
-import Tag from '../components/Tag.vue';
+import SelecionarIngredientes from './SelecionarIngredientes.vue';
 import SuaLista from '../components/SuaLista.vue';
+import Tag from '../components/Tag.vue';
 
 export default {
   data() {
     return {
-      ingredientes: ['Alho', 'Manteiga', 'Orégano', 'Pão', 'Tomilho', 'Limão']
+      ingredientes: [] as string[]
     };
   },
-  components: { SelecionarIngredientes, Tag, SuaLista }
+  components: { SelecionarIngredientes, Tag, SuaLista },
+  methods: {
+    adicionarIngrediente(ingrediente: string) {
+      this.ingredientes.push(ingrediente)
+    },
+    removerIngrediente(ingrediente: string) {
+      this.ingredientes = this.ingredientes.filter(iLista => ingrediente !== iLista);
+    },
+  }
 }
 </script>
 
 <template>
   <main class="conteudo-principal">
-    <SuaLista :ingredientes="ingredientes"/>
-    <SelecionarIngredientes />
+    <SuaLista :ingredientes="ingredientes" />
+
+    <SelecionarIngredientes
+      @adicionar-ingrediente="adicionarIngrediente"
+      @remover-ingrediente="removerIngrediente"
+    />
   </main>
 </template>
 
@@ -46,8 +58,6 @@ export default {
   gap: 1rem 1.5rem;
   flex-wrap: wrap;
 }
-
-
 
 .lista-vazia {
   display: flex;

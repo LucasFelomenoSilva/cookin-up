@@ -1,6 +1,6 @@
 <script lang="ts">
 import type { PropType } from 'vue';
-import Tag from '../components/Tag.vue'
+import Tag from '../components/Tag.vue';
 
 export default {
   components: { Tag },
@@ -12,22 +12,23 @@ export default {
 
 <template>
   <section>
-      <span class="subtitulo-lg sua-lista-texto">
-        Sua lista:
-      </span>
+    <span class="subtitulo-lg sua-lista-texto">
+      Sua lista:
+    </span>
 
-      <ul v-if="ingredientes.length" class="ingredientes-sua-lista">
-        <li v-for="ingrediente in ingredientes" :key="ingrediente">
-          <Tag :texto="ingrediente" ativa/>
-        </li>
-      </ul>
+    <ul v-if="ingredientes.length" class="ingredientes-sua-lista">
+      <li v-for="ingrediente in ingredientes" :key="ingrediente">
+        <Tag :texto="ingrediente" ativa />
+      </li>
+    </ul>
 
-      <p v-else class="paragrafo lista-vazia">
-        <img src="../assets/images/icones/lista-vazia.svg" alt="Ícone de pesquisa">
-        Sua lista está vazia, selecione ingredientes para iniciar
-      </p>
-    </section>
+    <p v-else class="paragrafo lista-vazia">
+      <img src="../assets/images/icones/lista-vazia.svg" alt="Ícone de pesquisa">
+      Sua lista está vazia, selecione ingredientes para iniciar.
+    </p>
+  </section>
 </template>
+
 <style scoped>
 .sua-lista-texto {
   color: var(--coral, #F0633C);
